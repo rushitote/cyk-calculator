@@ -5,8 +5,10 @@ import CYK from "./CYK";
 function App() {
   const [grammar, setGrammar] = useState("");
   const [word, setWord] = useState("");
-  const grammarInput = useRef(null);
-  const wordInput = useRef(null);
+  const [grammarInput, setGrammarInput] = useState(
+    "S -> AB | BC\nA -> BA | a\nB -> CC | b\nC -> AB | a"
+  );
+  const [wordInput, setWordInput] = useState("ababa");
 
   const timeComplexity = "O(n^3 · |G|)",
     wordLength = "n",
@@ -41,7 +43,8 @@ function App() {
             className="bg-gray-100 border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 h-40"
             id="inline-full-name"
             type="text"
-            ref={grammarInput}
+            value={grammarInput}
+            onChange={(e) => setGrammarInput(e.target.value)}
           />
         </div>
       </div>
@@ -56,7 +59,10 @@ function App() {
             className="bg-gray-100 border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
             id="inline-full-name"
             type="text"
-            ref={wordInput}
+            value={wordInput}
+            onChange={(e) => {
+              setWordInput(e.target.value);
+            }}
           />
         </div>
       </div>
@@ -64,8 +70,8 @@ function App() {
         <div className="mx-auto">
           <button
             onClick={() => {
-              setGrammar(grammarInput.current.value);
-              setWord(wordInput.current.value);
+              setGrammar(grammarInput);
+              setWord(wordInput);
             }}
             className="shadow bg-black hover:bg-gray-600 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
             type="button"
