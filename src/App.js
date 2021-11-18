@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import MathJax from "react-mathjax";
 import CYK from "./CYK";
 
